@@ -65,7 +65,7 @@ dd if=/dev/zero of=${TARGET_DEV} bs=512 count=1
 
 # create single active (bootable) primary partition with type 0x07
 echo "* creating new partition"
-echo 'n\np\n1\n\n\nt\n7\na\n1\nw\n' | fdisk /dev/sdi
+echo -e "n\np\n1\n\n\nt\n7\na\nw\n" | fdisk ${TARGET_DEV}
 
 # initialize filesystem
 echo "* creating NTFS filesystem on ${TARGET_PART}"

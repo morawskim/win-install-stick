@@ -2,6 +2,7 @@
 # The MIT License (MIT)
 
 # Copyright (c) 2015 Marc Brinkmann
+# Edited by Marcin Morawski
 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +26,7 @@ set -e
 
 TARGET_DEV=$1
 ISO_FILE=$2
-REQ_TOOLS="7z lilo mkfs.ntfs dd"
+REQ_TOOLS="7z ms-sys mkfs.ntfs dd"
 
 show_usage() {
   echo usage: `basename $0` DEVICE ISO
@@ -73,7 +74,7 @@ TARGET_PART=${TARGET_DEV}1
 mkfs.ntfs -f "${TARGET_PART}"
 
 # add mbr using lilo (other methods available, see source)
-lilo -M ${TARGET_DEV} mbr
+ms-sys -7 ${TARGET_DEV}
 
 # now mount stuff
 MOUNT_POINT=`mktemp -d`
